@@ -42,4 +42,21 @@ public class BinarySearch {
         return -(low + 1);
     }
 
+    public static <T extends Comparable<T>> int search(ArrayList<T> list, T searchTerm) {
+        int low = 0;
+        int high = list.size() - 1;
+        int middle = 0;
+        while (high >= low) {
+            middle = (low + high) >> 1; //bit shift divide by two.
+            if (list.get(middle).equals(searchTerm)) {
+                return middle;
+            } else if (list.get(middle).compareTo(searchTerm) < 0) {
+                low = middle + 1;
+            } else if (list.get(middle).compareTo(searchTerm) > 0) {
+                high = middle - 1;
+            }
+        }
+        return -(low + 1);
+    }
+
 }
