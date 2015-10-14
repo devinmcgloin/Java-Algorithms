@@ -17,7 +17,11 @@ public class QuickSort {
      * @param list
      * @param <T>
      */
-    public static <T extends Comparable<T>> void sort(ArrayList<T> list) {
-
+    public static <T extends Comparable<T>> void sort(ArrayList<T> list, int first, int last) {
+        int pivotIndex = (first + last) / 2;
+        T tmp = list.get(pivotIndex);
+        list.set(pivotIndex, list.get(last));
+        list.set(last, tmp);
+        
     }
 }
