@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class InsertionSort {
 
 
+    private InsertionSort() {
+    }
     /**
      * Average case = O(n^2)
      * Worst case = O(n^2)
@@ -37,12 +39,10 @@ public class InsertionSort {
         }
     }
 
-    private static <T extends Comparable<T>> void recursiveSort(ArrayList<T> list, int i) {
-        if (i == list.size())
-            return;
-        for (int j = i; (j > 0) && list.get(j).compareTo(list.get(j - 1)) < 0; j--) {
+    private static <T extends Comparable<T>> void recursiveSort(ArrayList<T> list, int j) {
+        if ((j > 0) && list.get(j).compareTo(list.get(j - 1)) < 0) {
             swap(list, j, j - 1);
-            recursiveSort(list, i + 1);
+            recursiveSort(list, j - 1);
         }
     }
 

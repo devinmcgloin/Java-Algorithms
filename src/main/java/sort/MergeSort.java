@@ -8,38 +8,51 @@ import java.util.ArrayList;
  */
 public class MergeSort {
 
-    public static <T extends Comparable<T>> void sort(ArrayList<T> list) {
-        int half = list.size() / 2;
-        sort(list, 0, half, half + 1, list.size() - 1);    // split to four here
+    private MergeSort() {
     }
 
-    public static <T extends Comparable<T>> void sort(ArrayList<T> list, int aStart, int aEnd, int bStart, int bEnd) {
-        if (aEnd - aStart == 2) {
+    public static <T extends Comparable<T>> void sort(ArrayList<T> list) {
+        sort(list, 0, list.size());
+    }
 
-        } else if (bEnd - bStart == 2) {
-
-        } else {
-            int aHalf = (aStart + aEnd) / 2;
-            int bHalf = (bStart + bEnd) / 2;
-            sort(list, aStart, aHalf, aHalf + 1, aEnd);
-            sort(list, bStart, bHalf, bHalf + 1, bEnd);
-            merge(list, aStart, aEnd, bStart, bEnd);
+    private static <T extends Comparable<T>> void sort(ArrayList<T> list, int start, int length) {
+        if (length > 2) {
+            int aLength = length / 2;
+            int bLength = length - aLength;
+            sort(list, start, aLength);
+            sort(list, start + aLength, bLength);
+            merge(list, start, aLength, start + aLength, bLength);
+        } else if (length == 2) {
+            T item = list.get(start);
+            if (item.compareTo(list.get(start + 1)) > 0) {
+                list.set(start, list.get(start + 1));
+                list.set(start + 1, item);
+            }
         }
     }
 
-    public static <T extends Comparable<T>> void merge(ArrayList<T> list, int aStart, int aEnd, int bStart, int bEnd) {
-        while (aStart < aEnd && bStart < bEnd) {
-            T a = list.get(aStart);
-            T b = list.get(bStart);
+    private static <T extends Comparable<T>> void merge(ArrayList<T> list, int aStart, int aLength, int bStart, int bLength) {
+        int i = aStart;
+        int j = bStart;
+
+        int aSize = aLength + aStart;
+        int bSize = bLength + bStart;
+
+        while (i < aSize && j < bSize) {
+            T a = list.get(i);
+            T b = list.get(j);
             if (a.compareTo(b) > 0) { // B is less than A
-                list.remove(b);
-                list.add(aStart, b);
-                aEnd++;
-                bStart++;
+                list.remove(j);
+                list.add(i, b);
+                i++;
+                j++;
+                aSize++;
             } else {
-                aStart++;
+                i++;
             }
         }
 
     }
+
+
 }

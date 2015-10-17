@@ -8,6 +8,9 @@ import java.util.ArrayList;
  */
 public class SelectionSort {
 
+    private SelectionSort() {
+    }
+
     /**
      * worst = O(n^2)
      *

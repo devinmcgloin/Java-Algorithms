@@ -18,16 +18,15 @@ public class MergeSortTest {
     @Test
     public void testSort() throws Exception {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        Random r = new Random();
+        Random r = new Random(2015);
 
-        for (int i = 0; i < 1; i++) {
-            for (int j = 0; j < 10; j++) {
-                list.add(r.nextInt(10));
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 1000; j++) {
+                list.add(r.nextInt(500));
             }
-            System.out.println(list);
             MergeSort.sort(list);
-            System.out.println(list);
             assertThat("Trial: " + i, Ordering.natural().isOrdered(list), is(true));
+            list.clear();
         }
     }
 }
