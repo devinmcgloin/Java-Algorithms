@@ -8,6 +8,9 @@ import java.util.ArrayList;
  */
 public class LinearSearch {
 
+    private LinearSearch() {
+    }
+
     public static <T extends Comparable<T>> int search(ArrayList<T> list, T searchTerm) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).compareTo(searchTerm) == 0) {

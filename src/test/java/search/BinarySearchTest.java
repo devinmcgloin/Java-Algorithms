@@ -17,29 +17,35 @@ public class BinarySearchTest {
     public void testRecSearch() throws Exception {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Random r = new Random();
-        Integer search = r.nextInt(1000);
-        list.add(search);
-        for (int i = 0; i < 500; i++) {
-            list.add(r.nextInt(1000));
-        }
-        Collections.sort(list);
-        int result = BinarySearch.recSearch(list, search);
+        for (int times = 0; times < 500; times++) {
+            Integer search = r.nextInt(1000);
+            list.add(search);
+            for (int i = 0; i < 500; i++) {
+                list.add(r.nextInt(1000));
+            }
+            Collections.sort(list);
+            int result = BinarySearch.recSearch(list, search);
 
-        assertThat(result, is(Collections.binarySearch(list, search)));
+            assertThat(result, is(Collections.binarySearch(list, search)));
+            list.clear();
+        }
     }
 
     @org.junit.Test
     public void testSearch() throws Exception {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Random r = new Random();
-        Integer search = r.nextInt(1000);
-        list.add(search);
-        for (int i = 0; i < 500; i++) {
-            list.add(r.nextInt(1000));
-        }
-        Collections.sort(list);
-        int result = BinarySearch.search(list, search);
+        for (int times = 0; times < 500; times++) {
+            Integer search = r.nextInt(1000);
+            list.add(search);
+            for (int i = 0; i < 500; i++) {
+                list.add(r.nextInt(1000));
+            }
+            Collections.sort(list);
+            int result = BinarySearch.search(list, search);
 
-        assertThat(result, is(Collections.binarySearch(list, search)));
+            assertThat(result, is(Collections.binarySearch(list, search)));
+            list.clear();
+        }
     }
 }
