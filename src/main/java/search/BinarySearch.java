@@ -7,6 +7,11 @@ import java.util.ArrayList;
  * @version 10/7/15.
  */
 public class BinarySearch {
+
+    private BinarySearch() {
+
+    }
+
     public static <T extends Comparable<T>> int recSearch(ArrayList<T> list, T searchTerm) {
         int low = 0;
         int high = list.size() - 1;
