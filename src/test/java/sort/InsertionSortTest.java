@@ -18,11 +18,11 @@ public class InsertionSortTest {
     @Test
     public void testSort() throws Exception {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        Random r = new Random(2015);
+        Random r = new Random(0);
 
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 1000; j++) {
-                list.add(r.nextInt(500));
+                list.add(r.nextInt());
             }
 
             InsertionSort.sort(list);
@@ -35,11 +35,11 @@ public class InsertionSortTest {
     @Test
     public void testRecursiveSort() throws Exception {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        Random r = new Random(2015);
+        Random r = new Random(0);
 
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 1000; j++) {
-                list.add(r.nextInt(500));
+                list.add(r.nextInt());
             }
             InsertionSort.recursiveSort(list);
             assertThat("Trial: " + i, Ordering.natural().isOrdered(list), is(true));

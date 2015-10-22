@@ -32,7 +32,7 @@ public class QuickSort {
         int s = start;
         int f = finish;
 
-        while (s <= f) {
+        while (s < f) {
             while (list.get(s).compareTo(pivot) < 0)
                 s++;
             while (list.get(f).compareTo(pivot) > 0)

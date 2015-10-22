@@ -16,6 +16,7 @@ public class BinarySearch {
         int low = 0;
         int high = list.size() - 1;
         int middle;
+
         if (high < low) {
             return -(low + 1);
         }
@@ -53,8 +54,8 @@ public class BinarySearch {
 
         while (high >= low) {
             middle = (low + high) >> 1; //bit shift divide by two.
-            T temp = list.get(middle);
-            int comp = temp.compareTo(searchTerm);
+            T mid = list.get(middle);
+            int comp = mid.compareTo(searchTerm);
             if (comp < 0) {
                 low = middle + 1;
             } else if (comp > 0) {

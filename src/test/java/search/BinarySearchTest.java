@@ -29,6 +29,26 @@ public class BinarySearchTest {
             assertThat(result, is(Collections.binarySearch(list, search)));
             list.clear();
         }
+
+        Integer search = r.nextInt(1000);
+        for (int i = 0; i < 1000; i++) {
+            list.add(r.nextInt(1000));
+        }
+        Collections.sort(list);
+        int result = BinarySearch.recSearch(list, search);
+
+        assertThat(result, is(Collections.binarySearch(list, search)));
+        list.clear();
+
+        search = r.nextInt(1000);
+        for (int i = 0; i < 0; i++) {
+            list.add(r.nextInt(1000));
+        }
+        Collections.sort(list);
+        result = BinarySearch.recSearch(list, search);
+
+        assertThat(result, is(Collections.binarySearch(list, search)));
+        list.clear();
     }
 
     @org.junit.Test
@@ -47,5 +67,25 @@ public class BinarySearchTest {
             assertThat(result, is(Collections.binarySearch(list, search)));
             list.clear();
         }
+
+        Integer search = r.nextInt(1000);
+        for (int i = 0; i < 1000; i++) {
+            list.add(r.nextInt(1000));
+        }
+        Collections.sort(list);
+        int result = BinarySearch.search(list, search);
+
+        assertThat(result, is(Collections.binarySearch(list, search)));
+        list.clear();
+
+        search = r.nextInt(1000);
+        for (int i = 0; i < 0; i++) {
+            list.add(r.nextInt(1000));
+        }
+        Collections.sort(list);
+        result = BinarySearch.search(list, search);
+
+        assertThat(result, is(Collections.binarySearch(list, search)));
+        list.clear();
     }
 }
