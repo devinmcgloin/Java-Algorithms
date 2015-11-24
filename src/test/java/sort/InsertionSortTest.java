@@ -17,8 +17,8 @@ public class InsertionSortTest {
 
     @Test
     public void testSort() throws Exception {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        Random r = new Random(0);
+        ArrayList<Integer> list = new ArrayList<>();
+        Random r = new Random();
 
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 1000; j++) {
@@ -34,8 +34,8 @@ public class InsertionSortTest {
 
     @Test
     public void testRecursiveSort() throws Exception {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        Random r = new Random(0);
+        ArrayList<Integer> list = new ArrayList<>();
+        Random r = new Random();
 
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 1000; j++) {

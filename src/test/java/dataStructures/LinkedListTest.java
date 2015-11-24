@@ -6,25 +6,24 @@ import java.util.EmptyStackException;
 import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * @author devinmcgloin
- * @version 10/14/15.
+ * @version 11/24/15.
  */
-public class StackTest {
-
-    Random r = new Random();
+public class LinkedListTest {
     int iterations = 10000;
+    Random r = new Random();
 
     @Test
     public void test() throws Exception {
-        java.util.Stack<Integer> javastack = new java.util.Stack<>();
-        Stack<Integer> stack = new Stack<>();
+        java.util.LinkedList<Integer> javalist = new java.util.LinkedList<Integer>();
+        LinkedList<Integer> list = new LinkedList<>();
         for (int i = 0; i < iterations; i++) {
             Integer item = r.nextInt();
-            stack.push(item);
-            javastack.push(item);
+            list.push(item);
+            javalist.push(item);
         }
 
         for (int i = 0; i < iterations; i++) {
@@ -32,21 +31,21 @@ public class StackTest {
             try {
                 switch (choice) {
                     case 0:
-                        assertThat(stack.peek(), is(javastack.peek()));
+                        assertThat(list.peek(), is(javalist.peek()));
                         break;
                     case 1:
-                        assertThat(stack.pop(), is(javastack.pop()));
+                        assertThat(list.pop(), is(javalist.pop()));
                         break;
                     case 2:
                         Integer searchItem = r.nextInt();
-                        assertThat(stack.search(searchItem), is(javastack.search(searchItem)));
+                        assertThat(list.search(searchItem), is(javalist.indexOf(searchItem)));
                         break;
                     case 3:
-                        assertThat(stack.empty(), is(javastack.empty()));
+                        assertThat(list.isEmpty(), is(javalist.isEmpty()));
                         break;
                     default:
                         searchItem = r.nextInt();
-                        assertThat(stack.search(searchItem), is(javastack.search(searchItem)));
+                        assertThat(list.search(searchItem), is(javalist.indexOf(searchItem)));
                         break;
                 }
             } catch (EmptyStackException e) {
@@ -54,13 +53,14 @@ public class StackTest {
             }
         }
 
-        while (!stack.empty() && !javastack.empty()) {
-            assertThat(stack.pop(), is(javastack.pop()));
+        while (!list.isEmpty() && !javalist.isEmpty()) {
+            assertThat(list.pop(), is(javalist.pop()));
         }
 
-        assertThat(stack.size(), is(javastack.size()));
-        assertThat(stack.size(), is(0));
-        assertThat(javastack.size(), is(0));
-
+        assertThat(list.size(), is(javalist.size()));
+        assertThat(list.size(), is(0));
+        assertThat(javalist.size(), is(0));
     }
+
+
 }

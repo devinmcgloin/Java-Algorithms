@@ -17,7 +17,7 @@ public class MergeSortTest {
 
     @Test
     public void testSort() throws Exception {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         Random r = new Random();
 
         for (int i = 0; i < 50; i++) {

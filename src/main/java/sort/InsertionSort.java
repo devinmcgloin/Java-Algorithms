@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class InsertionSort {
 
 
-    private InsertionSort() {
-    }
+    private InsertionSort() {}
+
     /**
-     * Average case = O(n^2)
-     * Worst case = O(n^2)
-     * Best case = O(n)
+     * Average case = O(n^2) Worst case = O(n^2) Best case = O(n)
      *
      * @param list
      * @param <T>

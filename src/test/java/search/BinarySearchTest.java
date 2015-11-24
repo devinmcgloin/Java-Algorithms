@@ -41,9 +41,6 @@ public class BinarySearchTest {
         list.clear();
 
         search = r.nextInt(1000);
-        for (int i = 0; i < 0; i++) {
-            list.add(r.nextInt(1000));
-        }
         Collections.sort(list);
         result = BinarySearch.recSearch(list, search);
 
@@ -79,9 +76,6 @@ public class BinarySearchTest {
         list.clear();
 
         search = r.nextInt(1000);
-        for (int i = 0; i < 0; i++) {
-            list.add(r.nextInt(1000));
-        }
         Collections.sort(list);
         result = BinarySearch.search(list, search);
 
