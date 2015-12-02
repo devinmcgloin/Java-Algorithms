@@ -30,11 +30,16 @@ public class BSTreeTest {
 
             switch (choice) {
                 case 0:
+                    Integer searchItem = r.nextInt();
+                    list.remove(searchItem);
+                    javalist.remove(searchItem);
+
+                    assertThat("Checking Remove", list.size(), is(javalist.size()));
                 case 1:
                     assertThat("Checking size", list.size(), is(javalist.size()));
                     break;
                 case 2:
-                    Integer searchItem = r.nextInt();
+                    searchItem = r.nextInt();
                     assertThat(String.format("Searching for: %d", searchItem), list.contains(searchItem), is(javalist.contains(searchItem)));
                     break;
                 case 3:

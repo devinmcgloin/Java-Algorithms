@@ -3,8 +3,8 @@ package dataStructures;
 import java.util.EmptyStackException;
 
 /**
- * Tested and matched with java implementation
- * implement common java spec
+ * Tested and matched with java implementation implement common java spec
+ *
  * @author devinmcgloin
  * @version 10/28/15.
  */
@@ -65,11 +65,11 @@ public class LinkedList<E> {
     }
 
     private int search(Node<E> node, E element) {
-        if(node == null || size == 0)
+        if (node == null || size == 0)
             return -1;
-        else if(node.element.equals(element)){
+        else if (node.element.equals(element)) {
             return 0;
-        }else{
+        } else {
             return 1 + search(node.next, element);
         }
     }
@@ -84,7 +84,7 @@ public class LinkedList<E> {
         E element = null;
         Node<E> next = null;
 
-        Node(E value){
+        Node(E value) {
             this.element = value;
         }
     }
