@@ -64,7 +64,7 @@ public class LinkedList<E> {
         return -1;
     }
 
-    public int search(Node<E> node, E element){
+    private int search(Node<E> node, E element) {
         if(node == null || size == 0)
             return -1;
         else if(node.element.equals(element)){
@@ -80,7 +80,7 @@ public class LinkedList<E> {
         return "size = " + size;
     }
 
-    class Node<E>{
+    private class Node<E> {
         E element = null;
         Node<E> next = null;
 

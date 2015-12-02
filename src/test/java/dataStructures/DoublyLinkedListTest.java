@@ -1,8 +1,10 @@
 package dataStructures;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -12,54 +14,55 @@ import static org.junit.Assert.assertThat;
  * @version 10/28/15.
  */
 public class DoublyLinkedListTest {
+    static Logger logger = Logger.getLogger(DoublyLinkedListTest.class);
+    int iterations = 10;
+    Random r = new Random();
 
     @Test
-    public void testAddLast() throws Exception {
+    public void test() throws Exception {
+        java.util.LinkedList<Integer> javalist = new java.util.LinkedList<Integer>();
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-        list.addFirst(2);
-        list.addFirst(1);
-        list.addLast(3);
-        list.addLast(4);
-        assertThat(list.getFirst(), is(1));
-    }
+        for (int i = 0; i < iterations; i++) {
+            Integer item = r.nextInt(10);
+            list.addFirst(item);
+            javalist.addFirst(item);
+        }
 
-    @Test
-    public void testAddFirst() throws Exception {
+        logger.debug(list);
+        logger.debug(javalist);
 
-    }
+        for (int i = 0; i < iterations; i++) {
+            int choice = r.nextInt(4);
+            switch (choice) {
+                case 0:
+                    assertThat("Remove First", list.removeFirst(), is(javalist.removeFirst()));
+                    break;
+                case 1:
+                    assertThat("Remove Last", list.removeLast(), is(javalist.removeLast()));
+                    break;
+                case 2:
+                    assertThat("Size Check", list.size(), is(javalist.size()));
+                    Integer searchItem = r.nextInt(list.size());
+                    assertThat("Get Check", list.get(searchItem), is(javalist.get(searchItem)));
+                    break;
+                case 3:
+                    assertThat("Empty Check", list.isEmpty(), is(javalist.isEmpty()));
+                    break;
+                default:
+                    searchItem = r.nextInt();
+                    assertThat("Contains Check", list.contains(searchItem), is(javalist.contains(searchItem)));
+                    break;
+            }
+        }
 
-    @Test
-    public void testRemoveLast() throws Exception {
+        while (!list.isEmpty() && !javalist.isEmpty()) {
+            logger.debug(list);
+            logger.debug(javalist);
+            assertThat(list.removeFirst(), is(javalist.removeFirst()));
+        }
 
-    }
-
-    @Test
-    public void testRemoveFirst() throws Exception {
-
-    }
-
-    @Test
-    public void testContains() throws Exception {
-
-    }
-
-    @Test
-    public void testToCollection() throws Exception {
-
-    }
-
-    @Test
-    public void testSize() throws Exception {
-
-    }
-
-    @Test
-    public void testSize1() throws Exception {
-
-    }
-
-    @Test
-    public void testToArray() throws Exception {
-
+        assertThat(list.size(), is(javalist.size()));
+        assertThat(list.size(), is(0));
+        assertThat(javalist.size(), is(0));
     }
 }

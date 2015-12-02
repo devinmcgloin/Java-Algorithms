@@ -121,7 +121,7 @@ public class Stack<E> {
      *
      * @param <T>
      */
-    class Node<T> {
+    private class Node<T> {
         T element;
         Node<T> next;
 
