@@ -1,8 +1,10 @@
 package dataStructures;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Random;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -12,54 +14,20 @@ import static org.junit.Assert.assertThat;
  * @version 10/28/15.
  */
 public class DoublyLinkedListTest {
+    static Logger logger = Logger.getLogger(DoublyLinkedListTest.class);
+    int iterations = 10;
+    Random r = new Random();
 
     @Test
-    public void testAddLast() throws Exception {
+    public void test() throws Exception {
+        java.util.LinkedList<Integer> javalist = new java.util.LinkedList<Integer>();
         DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
-        list.addFirst(2);
-        list.addFirst(1);
-        list.addLast(3);
-        list.addLast(4);
-        assertThat(list.getFirst(), is(1));
-    }
+        for (int i = 0; i < iterations; i++) {
+            Integer item = r.nextInt(10);
+        }
 
-    @Test
-    public void testAddFirst() throws Exception {
-
-    }
-
-    @Test
-    public void testRemoveLast() throws Exception {
-
-    }
-
-    @Test
-    public void testRemoveFirst() throws Exception {
-
-    }
-
-    @Test
-    public void testContains() throws Exception {
-
-    }
-
-    @Test
-    public void testToCollection() throws Exception {
-
-    }
-
-    @Test
-    public void testSize() throws Exception {
-
-    }
-
-    @Test
-    public void testSize1() throws Exception {
-
-    }
-
-    @Test
-    public void testToArray() throws Exception {
+        logger.debug(list);
+        logger.debug(javalist);
 
     }
 }

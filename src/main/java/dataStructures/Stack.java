@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 
 /**
  * implement more features
+ *
  * @author devinmcgloin
  * @version 10/14/15.
  */
@@ -121,7 +122,7 @@ public class Stack<E> {
      *
      * @param <T>
      */
-    class Node<T> {
+    private class Node<T> {
         T element;
         Node<T> next;
 

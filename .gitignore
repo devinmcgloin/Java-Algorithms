@@ -31,6 +31,8 @@ target
 *.sqlite
 *.iml
 resources
+logs
+util
 
 # OS generated files #
 ######################
