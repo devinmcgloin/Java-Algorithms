@@ -1,9 +1,8 @@
 package dataStructures;
 
 /**
- * implement
  * @author devinmcgloin
- * @version 11/24/15.
+ * @version 12/3/15.
  */
-public class AVLTree {
+public class Heap {
 }
