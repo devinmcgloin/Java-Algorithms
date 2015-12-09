@@ -2,69 +2,73 @@ package encryption;
 
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-
 /**
  * @author devinmcgloin
  * @version 12/3/15.
  */
-public class VegenereCipher {
+public class VegenereCipher implements SymmetricCipher {
     static Logger logger = Logger.getLogger(CaesarCipher.class);
+    String keyword;
 
-    public static String encode(String s, String keyword){
-        keyword = match(s, keyword);
-        logger.debug(keyword);
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < s.length(); i++){
-            int num = (int) s.charAt(i);
-            num += (int) keyword.charAt(i);
-            buffer.append((char)num);
-        }
-        return buffer.toString();
+    public VegenereCipher(final String keyword) {
+
+        this.keyword = keyword;
     }
 
-    public static String decode(String s, String keyword){
-        keyword = match(s, keyword);
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < s.length(); i++){
-            int num = (int) s.charAt(i);
-            num -= (int) keyword.charAt(i);
-            buffer.append((char)num);
-        }
-        return buffer.toString();
+    public static void main(String[] args) {
+        String s = "ATTACK AT DAWN";
+        String key = "7sad8and23";
+        VegenereCipher vc = new VegenereCipher(key);
+
+        String inCoded = vc.encode(s);
+        String decoded = vc.decode(inCoded);
+        logger.debug(String.format("Initial Message: %s\n\t\tKeyword: %s\n\n\t\tEncoded: %s\n\t\tDecoded: %s ", s, key, inCoded, decoded));
     }
 
-    public static void main(String[] args){
-        String s = "ATTACKATDAWN";
-        String inCoded = encode(s, "LEMON");
-        logger.debug(inCoded);
-        ArrayList<Integer> codePoints = new ArrayList<>();
-        for(char c : inCoded.toCharArray()){
-            codePoints.add((int)c);
-        }
-        logger.debug(codePoints);
-        logger.debug(decode(inCoded, "LEMON"));
-    }
-
-    private static String match(String s, String keyword){
+    private static String repeatToMatch(int sLength, String keyword) {
         StringBuffer buffer = new StringBuffer(keyword);
-        do{
+        do {
             int keywordLength = buffer.length();
-            int sLength = s.length();
             int difference = sLength - keywordLength;
 
-            if(difference > sLength) {
+            if (difference > sLength) {
                 buffer.append(keyword);
-            }else{
-                for(char c : keyword.toCharArray()){
+            } else {
+                for (char c : keyword.toCharArray()) {
                     buffer.append(c);
                     difference--;
-                    if(difference == 0){
+                    if (difference == 0) {
                         break;
                     }
                 }
             }
-        }while(buffer.length() < s.length());
+        } while (buffer.length() < sLength);
+        return buffer.toString();
+    }
+
+    public void setKeyword(final String keyword) {
+        this.keyword = keyword;
+    }
+
+    public String encode(String s) {
+        keyword = repeatToMatch(s.length(), keyword);
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < s.length(); i++) {
+            int num = (int) s.charAt(i);
+            num += (int) keyword.charAt(i);
+            buffer.append((char) num);
+        }
+        return buffer.toString();
+    }
+
+    public String decode(String s) {
+        keyword = repeatToMatch(s.length(), keyword);
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < s.length(); i++) {
+            int num = (int) s.charAt(i);
+            num -= (int) keyword.charAt(i);
+            buffer.append((char) num);
+        }
         return buffer.toString();
     }
 }

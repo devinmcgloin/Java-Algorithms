@@ -18,9 +18,10 @@ public class VegenereCipherTest {
     @Test
     public void test() throws Exception {
         for (int i = 0; i < iterations; i++) {
-            int offset = r.nextInt(100);
+            String keyword = getRandomString(r.nextInt(100));
             String s = getRandomString(r.nextInt(1000));
-            assertThat(s, CaesarCipher.decode(CaesarCipher.encode(s, offset), offset), is(s));
+            VegenereCipher vc = new VegenereCipher(keyword);
+            assertThat(s, vc.decode(vc.encode(s)), is(s));
         }
     }
 
@@ -31,6 +32,4 @@ public class VegenereCipherTest {
         }
         return buffer.toString();
     }
-
-
 }

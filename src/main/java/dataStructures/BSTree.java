@@ -1,7 +1,8 @@
 package dataStructures;
 
 /**
- * Simple non balancing BST that assumes natural ordering, uses inorder traversal and does not support custom comparators.
+ * Simple non balancing BST that assumes natural ordering, uses inorder traversal and does not support custom
+ * comparators.
  *
  * @author devinmcgloin
  * @version 11/11/15.

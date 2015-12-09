@@ -20,7 +20,8 @@ public class CaesarCipherTest {
         for(int i = 0; i < iterations; i++) {
             int offset = r.nextInt(100);
             String s = getRandomString(r.nextInt(1000));
-            assertThat(s, CaesarCipher.decode(CaesarCipher.encode(s, offset), offset), is(s));
+            CaesarCipher cc = new CaesarCipher(offset);
+            assertThat(s, cc.decode(cc.encode(s)), is(s));
         }
     }
 

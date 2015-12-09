@@ -3,7 +3,7 @@ package dataStructures;
 import java.util.EmptyStackException;
 
 /**
- * implement more features
+ * implement more features, dont let null values in.
  *
  * @author devinmcgloin
  * @version 10/14/15.
@@ -78,11 +78,10 @@ public class Stack<E> {
         if (empty() || element == null || !(element.getClass().equals(head.element.getClass())))
             return -1;
 
-        final E searchItem = (E) element;
         int pos = 1;
         Node<E> current = head;
         while (current != null) {
-            if (current.element.equals(searchItem)) {
+            if (current.element.equals(element)) {
                 return pos;
             }
             pos++;
