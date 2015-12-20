@@ -16,8 +16,8 @@ public class CaesarCipher implements SymmetricCipher {
     }
 
     public static void main(String[] args) {
-        String s = "ATTACK AT DAWN";
-        int key = 12;
+        String s = "Ebiil)`^bp^o";
+        int key = 3;
         CaesarCipher cc = new CaesarCipher(key);
 
         String inCoded = cc.encode(s);

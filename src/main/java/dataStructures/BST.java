@@ -7,13 +7,23 @@ package dataStructures;
  * @author devinmcgloin
  * @version 11/11/15.
  */
-public class BSTree<E extends Comparable<E>> {
+public class BST<E extends Comparable<E>> {
 
     private BSTNode<E> root = null;
     private int size;
+    private TRAVERSAL traversal = TRAVERSAL.inorder;
 
-    public BSTree() {
+    public BST() {
         size = 0;
+    }
+
+    public BST(TRAVERSAL traversal) {
+        size = 0;
+        this.traversal = traversal;
+    }
+
+    public void setTraversal(final TRAVERSAL traversal) {
+        this.traversal = traversal;
     }
 
     /**
@@ -219,7 +229,6 @@ public class BSTree<E extends Comparable<E>> {
         return size;
     }
 
-
     /**
      * toString method that returns the inorder traversal of the tree, surrounded by brackets.
      *
@@ -227,7 +236,13 @@ public class BSTree<E extends Comparable<E>> {
      */
     public String toString() {
         StringBuffer buffer = new StringBuffer().append("[");
-        inorderTraversal(root, buffer);
+        if (traversal == TRAVERSAL.inorder) {
+            inorderTraversal(root, buffer);
+        } else if (traversal == TRAVERSAL.postorder) {
+            postOrderTraversal(root, buffer);
+        } else if (traversal == TRAVERSAL.preorder) {
+            preOrderTraversal(root, buffer);
+        }
         return buffer.append("]").toString().trim();
     }
 
@@ -240,9 +255,52 @@ public class BSTree<E extends Comparable<E>> {
     private void inorderTraversal(BSTNode<E> n, StringBuffer buffer) {
         if (n != null) {
             inorderTraversal(n.left, buffer);
+            buffer.append(" ").append(n.toString()).append(" ");
             inorderTraversal(n.right, buffer);
+        }
+    }
+
+    private void postOrderTraversal(BSTNode<E> n, StringBuffer buffer) {
+        if (n != null) {
+            postOrderTraversal(n.left, buffer);
+            postOrderTraversal(n.right, buffer);
             buffer.append(" ").append(n.toString()).append(" ");
         }
+    }
+
+    private void preOrderTraversal(BSTNode<E> n, StringBuffer buffer) {
+        if (n != null) {
+            buffer.append(" ").append(n.toString()).append(" ");
+            preOrderTraversal(n.left, buffer);
+            preOrderTraversal(n.right, buffer);
+        }
+    }
+
+    public String prettyPrint() {
+        StringBuffer buffer = new StringBuffer();
+        prettyPrint(root, buffer, 0);
+        return buffer.toString();
+    }
+
+    private void prettyPrint(BSTNode<E> n, StringBuffer buffer, int depth) {
+        buffer.append(pDepth(depth)).append(n.toString()).append("\n");
+        if (n.isLeaf()) return;
+        if (n.left != null)
+            prettyPrint(n.left, buffer, depth + 1);
+        if (n.right != null)
+            prettyPrint(n.right, buffer, depth + 1);
+    }
+
+    private String pDepth(int depth) {
+        String s = "";
+        for (int i = 0; i < depth; i++) {
+            s += "\t";
+        }
+        return s;
+    }
+
+    public enum TRAVERSAL {
+        inorder, postorder, preorder
     }
 
     /**
@@ -250,7 +308,7 @@ public class BSTree<E extends Comparable<E>> {
      *
      * @param <T>
      */
-    protected class BSTNode<T extends Comparable<T>> {
+    private class BSTNode<T extends Comparable<T>> {
         T data;
         BSTNode<T> left;
         BSTNode<T> right;

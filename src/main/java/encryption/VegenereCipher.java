@@ -11,13 +11,12 @@ public class VegenereCipher implements SymmetricCipher {
     String keyword;
 
     public VegenereCipher(final String keyword) {
-
         this.keyword = keyword;
     }
 
     public static void main(String[] args) {
-        String s = "ATTACK AT DAWN";
-        String key = "7sad8and23";
+        String s = "There's some pretty good encyption schemes out there, but Vegenere ciphers have been obsolete since the 1700s.";
+        String key = "this isnt really true vegenere due to lack of a vegenere square.";
         VegenereCipher vc = new VegenereCipher(key);
 
         String inCoded = vc.encode(s);

@@ -2,7 +2,7 @@ package compression;
 
 /**
  * @author devinmcgloin
- * @version 12/3/15.
+ * @version 12/20/15.
  */
-public class VLC {
+public class SimpleVLC {
 }

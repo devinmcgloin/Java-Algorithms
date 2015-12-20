@@ -11,14 +11,14 @@ import static org.junit.Assert.assertThat;
  * @author devinmcgloin
  * @version 12/1/15.
  */
-public class BSTreeTest {
+public class BSTTest {
     Random r = new Random();
     int iterations = 5000;
 
     @Test
     public void generalTest() throws Exception {
         java.util.TreeSet<Integer> javalist = new java.util.TreeSet<Integer>();
-        BSTree<Integer> list = new BSTree<>();
+        BST<Integer> list = new BST<>();
         for (int i = 0; i < iterations; i++) {
             Integer item = r.nextInt();
             list.insert(item);
@@ -64,8 +64,18 @@ public class BSTreeTest {
     }
 
     @Test
-    public void testInsert() throws Exception {
+    public void testTraversals() throws Exception {
+        BST<Integer> tree = new BST<>();
+        for (int i = 0; i < 15; i++) {
+            tree.insert(r.nextInt(100));
+        }
 
+        System.out.println(tree.prettyPrint());
+        System.out.printf("Inorder Traversal:   %s\n", tree);
+        tree.setTraversal(BST.TRAVERSAL.postorder);
+        System.out.printf("PostOrder Traversal: %s\n", tree);
+        tree.setTraversal(BST.TRAVERSAL.preorder);
+        System.out.printf("Preorder Traversal:  %s\n", tree);
     }
 
     @Test
