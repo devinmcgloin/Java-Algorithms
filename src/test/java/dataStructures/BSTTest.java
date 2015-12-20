@@ -63,20 +63,20 @@ public class BSTTest {
         assertThat(javalist.size(), is(0));
     }
 
-    @Test
-    public void testTraversals() throws Exception {
-        BST<Integer> tree = new BST<>();
-        for (int i = 0; i < 15; i++) {
-            tree.insert(r.nextInt(100));
-        }
-
-        System.out.println(tree.prettyPrint());
-        System.out.printf("Inorder Traversal:   %s\n", tree);
-        tree.setTraversal(BST.TRAVERSAL.postorder);
-        System.out.printf("PostOrder Traversal: %s\n", tree);
-        tree.setTraversal(BST.TRAVERSAL.preorder);
-        System.out.printf("Preorder Traversal:  %s\n", tree);
-    }
+//    @Test
+//    public void testTraversals() throws Exception {
+//        BST<Integer> tree = new BST<>();
+//        for (int i = 0; i < 15; i++) {
+//            tree.insert(r.nextInt(100));
+//        }
+//
+//        System.out.println(tree.prettyPrint());
+//        System.out.printf("Inorder Traversal:   %s\n", tree);
+//        tree.setTraversal(BST.TRAVERSAL.postorder);
+//        System.out.printf("PostOrder Traversal: %s\n", tree);
+//        tree.setTraversal(BST.TRAVERSAL.preorder);
+//        System.out.printf("Preorder Traversal:  %s\n", tree);
+//    }
 
     @Test
     public void testRemove() throws Exception {

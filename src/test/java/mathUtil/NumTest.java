@@ -1,14 +1,9 @@
 package mathUtil;
 
-import org.apache.commons.math3.util.ArithmeticUtils;
-import org.apache.commons.math3.util.MathUtils;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import org.apache.log4j.Logger;
-
 import java.util.Random;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 
 /**
  * @author devinmcgloin
@@ -25,7 +20,7 @@ public class NumTest {
             long u = r.nextLong();
             long v =  r.nextLong();
 //            assertThat(String.format("u: %d\tv: %d", u, v), Num.gcd(u, v), is(ArithmeticUtils.gcd(u,v)));
-            logger.debug(String.format("GCD u: %d\tv: %d = %d", u, v, ArithmeticUtils.gcd(u,v)));
+//            logger.debug(String.format("GCD u: %d\tv: %d = %d", u, v, ArithmeticUtils.gcd(u,v)));
         }
     }
 

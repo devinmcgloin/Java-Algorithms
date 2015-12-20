@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  */
 public class VegenereCipherTest {
     Random r = new Random();
-    int iterations = 50000;
+    int iterations = 5000;
 
     @Test
     public void test() throws Exception {
@@ -27,7 +27,7 @@ public class VegenereCipherTest {
 
     private String getRandomString(int length) {
         StringBuffer buffer = new StringBuffer();
-        while (buffer.length() != length) {
+        while (buffer.length() <= length) {
             buffer.append((char) r.nextInt(500));
         }
         return buffer.toString();

@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import java.util.Random;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 
 /**
  * @author devinmcgloin
@@ -26,8 +23,8 @@ public class DoublyLinkedListTest {
             Integer item = r.nextInt(10);
         }
 
-        logger.debug(list);
-        logger.debug(javalist);
+//        logger.debug(list);
+//        logger.debug(javalist);
 
     }
 }
