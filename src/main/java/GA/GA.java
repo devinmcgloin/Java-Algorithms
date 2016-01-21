@@ -29,28 +29,6 @@ public class GA<E extends GAInterface<E>> {
         this.t = t;
     }
 
-    static void genBinSeq(String s, int len, ArrayList<String> list) {
-        if (s.length() == len) {
-            list.add(s);
-        } else {
-            genBinSeq(s + "0", len, list);
-            genBinSeq(s + "1", len, list);
-        }
-    }
-
-    static String genRandBitStr(int length) {
-        StringBuffer buffer = new StringBuffer();
-        int k = 0;
-        while (k < length) {
-            k++;
-            if (r.nextDouble() <= .5)
-                buffer.append("0");
-            else
-                buffer.append("1");
-        }
-        return buffer.toString();
-    }
-
     public E getAnswer() {
         solve(init);
         return answer;
