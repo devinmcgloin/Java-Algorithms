@@ -1,9 +1,6 @@
 package dataStructures.Graph;
 
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author devinmcgloin
@@ -101,7 +98,21 @@ public class GraphAdjList<E> implements IGraph<E> {
 
     @Override
     public List<E> getNeighbors(final E vertex) {
-        return adjList.get(vertex);
+        return new ArrayList<E>(adjList.get(vertex));
+    }
+
+    public List<E> getNeighbors(final E vertex, final int dist) {
+        List<E> tempList = adjList.get(vertex);
+        List<E> fullList = new ArrayList<>(tempList);
+        for (int i = 0; i < dist; i++) {
+            List<E> innerTmpList = new ArrayList<>();
+            for (E item : tempList) {
+                innerTmpList.addAll(adjList.get(item));
+            }
+            fullList.addAll(innerTmpList);
+            tempList = innerTmpList;
+        }
+        return fullList;
     }
 
     enum TYPE {

@@ -39,6 +39,16 @@ public class GraphAdjMatrix<E> implements IGraph<E> {
     }
 
     @Override
+    public void deleteVertex(final E vertex) {
+
+    }
+
+    @Override
+    public void deleteEdge(final E vertexA, final E vertexB) {
+
+    }
+
+    @Override
     public List<E> getNeighbors(final E vertex) {
         return null;
     }
@@ -62,7 +72,7 @@ public class GraphAdjMatrix<E> implements IGraph<E> {
         }
     }
 
-    public List<Integer> getNeighbors(int v) {
+    public List<E> getNeighbors(int v) {
         return null;
     }
 
