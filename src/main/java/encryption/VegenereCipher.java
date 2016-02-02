@@ -14,16 +14,6 @@ public class VegenereCipher implements SymmetricCipher {
         this.keyword = keyword;
     }
 
-    public static void main(String[] args) {
-        String s = "There's some pretty good encyption schemes out there, but Vegenere ciphers have been obsolete since the 1700s.";
-        String key = "this isnt really true vegenere due to lack of a vegenere square.";
-        VegenereCipher vc = new VegenereCipher(key);
-
-        String inCoded = vc.encode(s);
-        String decoded = vc.decode(inCoded);
-        logger.debug(String.format("Initial Message: %s\n\t\tKeyword: %s\n\n\t\tEncoded: %s\n\t\tDecoded: %s ", s, key, inCoded, decoded));
-    }
-
     private static String repeatToMatch(int sLength, String keyword) {
         StringBuffer buffer = new StringBuffer(keyword);
         do {

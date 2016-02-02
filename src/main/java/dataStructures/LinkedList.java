@@ -1,14 +1,16 @@
 package dataStructures;
 
+import dataStructures.interfaces.IList;
+
 import java.util.EmptyStackException;
 
 /**
  * Tested and matched with java implementation implement common java spec
- *
+ * todo this needs to turn into a double linked list.
  * @author devinmcgloin
  * @version 10/28/15.
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements IList<E> {
     Node<E> head = null;
     int size = 0;
 

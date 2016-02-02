@@ -1,4 +1,4 @@
-package dataStructures.Graph;
+package dataStructures.interfaces;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ public interface IGraph<E> {
 
     void addEdge(E vertexA, E vertexB);
 
-    List<E> getNeighbors(E vertex);
+    IList<E> getNeighbors(E vertex);
 
-    void deleteVertex(E vertex);
+    void removeVertex(E vertex);
 
-    void deleteEdge(E vertexA, E vertexB);
+    void removeEdge(E vertexA, E vertexB);
 }

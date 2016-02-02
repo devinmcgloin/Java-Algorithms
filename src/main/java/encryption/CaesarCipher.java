@@ -15,17 +15,6 @@ public class CaesarCipher implements SymmetricCipher {
         this.offset = offset;
     }
 
-    public static void main(String[] args) {
-        String s = "Ebiil)`^bp^o";
-        int key = 3;
-        CaesarCipher cc = new CaesarCipher(key);
-
-        String inCoded = cc.encode(s);
-        String decoded = cc.decode(inCoded);
-        logger.debug(String.format("Initial Message: %s\n\t\tKeyword: %s\n\n\t\tEncoded: %s\n\t\tDecoded: %s ", s, key, inCoded, decoded));
-
-    }
-
     public String encode(String s) {
         StringBuffer buffer = new StringBuffer();
         for (char c : s.toCharArray()) {

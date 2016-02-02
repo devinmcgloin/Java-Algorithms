@@ -1,5 +1,7 @@
 package dataStructures;
 
+import dataStructures.interfaces.IStack;
+
 import java.util.EmptyStackException;
 
 /**
@@ -8,7 +10,8 @@ import java.util.EmptyStackException;
  * @author devinmcgloin
  * @version 10/14/15.
  */
-public class Stack<E> {
+public class Stack<E> implements IStack<E> {
+
     Node<E> head = null;
 
     public Stack() {

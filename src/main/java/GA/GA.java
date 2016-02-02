@@ -30,8 +30,7 @@ public class GA<E extends GAInterface<E>> {
     }
 
     public E getAnswer() {
-        solve(init);
-        return answer;
+        return solve(init);
     }
 
     private ArrayList<String> reproduce(String a, String b, int subPop) {
@@ -114,7 +113,7 @@ public class GA<E extends GAInterface<E>> {
         return new String[]{a1, b1};
     }
 
-    private void solve(ArrayList<String> l) {
+    private E solve(ArrayList<String> l) {
         if (init.size() < 2) {
             throw new IllegalArgumentException("Initialization ArrayList must have more than 1 element");
         }
@@ -126,12 +125,13 @@ public class GA<E extends GAInterface<E>> {
             l = select(generatePopulation(l));
             if (t.decode(l.get(0)).fitness() == 0) {
                 System.out.printf("Solution found: \n%s\n", t.decode(l.get(0)));
-                answer = t.decode(l.get(0));
+                return t.decode(l.get(0));
             }
             if (i == iterations) {
                 System.out.println("No solution found, please consider increasing iterations count.");
             }
         }
+        return null;
     }
 
 }

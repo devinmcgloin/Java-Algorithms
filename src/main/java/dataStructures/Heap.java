@@ -1,12 +1,15 @@
 package dataStructures;
 
+import dataStructures.interfaces.IHeap;
+
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author devinmcgloin
  * @version 12/3/15.
  */
-public class Heap<E> {
+public class Heap<E> implements IHeap<E>{
 
     ArrayList<E> list;
 

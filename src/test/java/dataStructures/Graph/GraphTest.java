@@ -1,5 +1,7 @@
 package dataStructures.Graph;
 
+import dataStructures.Graph;
+import dataStructures.interfaces.IGraph;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -9,10 +11,10 @@ import static org.junit.Assert.assertThat;
  * @author devinmcgloin
  * @version 1/19/16.
  */
-public class GraphAdjListTest {
+public class GraphTest {
 
     private IGraph<Integer> genGraph() {
-        IGraph<Integer> g = new GraphAdjList<>();
+        IGraph<Integer> g = new Graph<>();
         for (int i = 0; i < 6; i++) {
             g.addVertex(i);
         }
