@@ -1,13 +1,12 @@
 package graph;
 
-import dataStructures.Graph;
-import dataStructures.LinkedList;
-import dataStructures.HashMap;
-import dataStructures.HashSet;
-import dataStructures.Graph.Vertex;
-import dataStructures.Graph.Edge;
-import dataStructures.interfaces.IList;
 
+import dataStructures.Graph;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author devinmcgloin
@@ -17,10 +16,10 @@ public class BFS {
 
     private BFS(){}
 
-    public static <E> IList<E> bfs(Graph<E> map, E start, E goal) {
+    public static <E> List<E> bfs(Graph<E> map, E start, E goal) {
         // Edge case if start is equal to the goal.
         if(start.equals(goal)) {
-            IList<E> list = new LinkedList<>();
+            List<E> list = new LinkedList<>();
             list.add(goal);
             return list;
         }
@@ -62,5 +61,22 @@ public class BFS {
         }
 
         return null;
+    }
+
+    public static void main(String[] args){
+        Graph<String> g = new Graph<>();
+        g.addEdge("a", 1, "b");
+        g.addEdge("a", 1, "h");
+        g.addEdge("b", 1, "h");
+        g.addEdge("b", 1, "f");
+        g.addEdge("c", 1, "d");
+        g.addEdge("d", 1, "i");
+        g.addEdge("d", 1, "g");
+        g.addEdge("e", 1, "f");
+        g.addEdge("e", 1, "g");
+        g.addEdge("f", 1, "i");
+        g.addEdge("a", 1, "d");
+
+        System.out.println(bfs(g, "b", "c"));
     }
 }

@@ -1,9 +1,11 @@
 package dataStructures;
 
-import dataStructures.interfaces.IGraph;
-import dataStructures.interfaces.IList;
-import dataStructures.interfaces.IMap;
 
+import dataStructures.interfaces.IGraph;
+
+import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * @author devinmcgloin
@@ -11,7 +13,7 @@ import dataStructures.interfaces.IMap;
  */
 public class Graph<E> implements IGraph<E> {
 
-    IMap<Vertex<E>, IList<Edge<E>>> adjList = new HashMap<>();
+    Map<Vertex<E>, List<Edge<E>>> adjList = new HashMap<>();
     private int numVerts;
     private int numEdges;
     private TYPE t;
@@ -84,7 +86,7 @@ public class Graph<E> implements IGraph<E> {
     private void addDirected(final E vertexA, double weight, final E vertexB) {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
-        IList<Edge<E>> list = adjList.get(vA);
+        List<Edge<E>> list = adjList.get(vA);
 
         if (!list.contains(vB)) {
             Edge<E> edge = new Edge<>(vA, weight, vB);
@@ -97,8 +99,8 @@ public class Graph<E> implements IGraph<E> {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
 
-        IList<Edge<E>> listA = adjList.get(vA);
-        IList<Edge<E>> listB = adjList.get(vB);
+        List<Edge<E>> listA = adjList.get(vA);
+        List<Edge<E>> listB = adjList.get(vB);
 
         if (!listA.contains(vertexB) && !listB.contains(vertexA)) {
             Edge<E> edgeA = new Edge<>(vA, weight, vB);
@@ -112,9 +114,9 @@ public class Graph<E> implements IGraph<E> {
     }
 
     @Override
-    public IList<E> getNeighbors(final E vertex) {
-        IList<Edge<E>> l = adjList.get(new Vertex<>(vertex));
-        IList<E> ll = new LinkedList<>();
+    public List<E> getNeighbors(final E vertex) {
+        List<Edge<E>> l = adjList.get(new Vertex<>(vertex));
+        List<E> ll = new LinkedList<>();
         for(Edge<E> edge : l){
             ll.add(edge.to.data);
         }

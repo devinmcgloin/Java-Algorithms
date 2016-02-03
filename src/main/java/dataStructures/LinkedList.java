@@ -15,6 +15,7 @@ import java.util.Iterator;
  */
 public class LinkedList<E> implements IList<E>,IDeque<E> {
     Node<E> head = null;
+    Node<E> tail = null;
     int size = 0;
 
     /**
@@ -170,15 +171,6 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
         return -1;
     }
 
-    private int search(Node<E> node, E element) {
-        if (node == null || size == 0)
-            return -1;
-        else if (node.element.equals(element)) {
-            return 0;
-        } else {
-            return 1 + search(node.next, element);
-        }
-    }
 
 
     @Override
@@ -189,6 +181,7 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     private class Node<E> {
         E element = null;
         Node<E> next = null;
+        Node<E> prev = null;
 
         Node(E value) {
             this.element = value;

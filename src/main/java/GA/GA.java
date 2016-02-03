@@ -16,7 +16,7 @@ import java.util.Random;
 public class GA<E extends GAInterface<E>> {
     static Logger logger = Logger.getLogger(GA.class);
     static Random r = new Random();
-    double mutation_rate = 0.001;
+    double mutation_rate = 0.01;
     int population = 1000;
     double crossover_rate = 0.7;
     int iterations = 1000;
@@ -29,9 +29,6 @@ public class GA<E extends GAInterface<E>> {
         this.t = t;
     }
 
-    public E getAnswer() {
-        return solve(init);
-    }
 
     private ArrayList<String> reproduce(String a, String b, int subPop) {
         ArrayList<String> decendants = new ArrayList<>(subPop);
@@ -63,11 +60,20 @@ public class GA<E extends GAInterface<E>> {
                     }
                 }
             }
-            decendants.add(Arrays.toString(first));
-            decendants.add(Arrays.toString(second));
+            decendants.add(stringFromArray(first));
+            decendants.add(stringFromArray(second));
         }
 
+//        logger.debug("Descendants size: " + decendants.size());
+
         return decendants;
+    }
+
+    private static String stringFromArray(char[] charArray ){
+        StringBuffer buff = new StringBuffer();
+        for(char c : charArray)
+            buff.append(c);
+        return buff.toString();
     }
 
     private ArrayList<String> generatePopulation(ArrayList<String> selected) {
@@ -89,8 +95,8 @@ public class GA<E extends GAInterface<E>> {
         ArrayList<String> selected = new ArrayList<>();
         for (Pair<Double, String> item : populationFitness.subList(0, select_amount)) {
             selected.add(item.getValue1());
-            logger.debug(item);
         }
+//        logger.debug("Selected size: " + selected.size());
         return selected;
     }
 
@@ -100,21 +106,18 @@ public class GA<E extends GAInterface<E>> {
         int crossIndex2 = r.nextInt(a.length());
         String a1, b1;
         if (crossIndex1 < crossIndex2) {
-            a1 = a.substring(0, crossIndex1) + b.substring(crossIndex1, crossIndex2)
-                    + a.substring(crossIndex2, a.length());
-            b1 = b.substring(0, crossIndex1) + a.substring(crossIndex1, crossIndex2)
-                    + b.substring(crossIndex2, a.length());
+            a1 = a.substring(0, crossIndex1) + b.substring(crossIndex1, crossIndex2) + a.substring(crossIndex2, a.length());
+            b1 = b.substring(0, crossIndex1) + a.substring(crossIndex1, crossIndex2) + b.substring(crossIndex2, a.length());
         } else {
-            a1 = a.substring(0, crossIndex2) + b.substring(crossIndex2, crossIndex1)
-                    + a.substring(crossIndex1, a.length());
-            b1 = b.substring(0, crossIndex2) + a.substring(crossIndex2, crossIndex1)
-                    + b.substring(crossIndex1, a.length());
+            a1 = a.substring(0, crossIndex2) + b.substring(crossIndex2, crossIndex1) + a.substring(crossIndex1, a.length());
+            b1 = b.substring(0, crossIndex2) + a.substring(crossIndex2, crossIndex1) + b.substring(crossIndex1, a.length());
         }
         return new String[]{a1, b1};
     }
 
-    private E solve(ArrayList<String> l) {
-        if (init.size() < 2) {
+    public E solve() {
+        ArrayList<String> l = t.genRandOffspring();
+        if (l.size() < 2) {
             throw new IllegalArgumentException("Initialization ArrayList must have more than 1 element");
         }
 
@@ -123,8 +126,8 @@ public class GA<E extends GAInterface<E>> {
 
         for (int i = 1; i <= iterations; i++) {
             l = select(generatePopulation(l));
+            logger.debug(String.format("%s = %f", t.decode(l.get(0)), t.decode(l.get(0)).fitness()));
             if (t.decode(l.get(0)).fitness() == 0) {
-                System.out.printf("Solution found: \n%s\n", t.decode(l.get(0)));
                 return t.decode(l.get(0));
             }
             if (i == iterations) {
