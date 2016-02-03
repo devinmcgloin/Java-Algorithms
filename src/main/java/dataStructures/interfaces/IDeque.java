@@ -21,4 +21,8 @@ public interface IDeque<E> extends Seq<E> {
     E first();
 
     E last();
+
+    void addFirst(E element);
+
+    void addLast(E element);
 }

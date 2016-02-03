@@ -66,7 +66,7 @@ public class Graph<E> implements IGraph<E> {
      * @param vertexB
      */
     @Override
-    public void addEdge(final E vertexA, final E vertexB) {
+    public void addEdge(final E vertexA, final double edgeWeight, final E vertexB) {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
         if (vertexA.equals(vertexB))
@@ -76,38 +76,50 @@ public class Graph<E> implements IGraph<E> {
         if (!adjList.containsKey(vB))
             addVertex(vertexB);
             if (t == TYPE.DIRECTED)
-                addDirected(vertexA, vertexB);
+                addDirected(vertexA, edgeWeight, vertexB);
             else
-                addUndirected(vertexA, vertexB);
+                addUndirected(vertexA,edgeWeight, vertexB);
     }
 
-    private void addDirected(final E vertexA, final E vertexB) {
+    private void addDirected(final E vertexA, double weight, final E vertexB) {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
         IList<Edge<E>> list = adjList.get(vA);
 
-
-//        if (!list.contains(vB)) {
-//            list.add(vB);
-//            numEdges++;
-//        }
+        if (!list.contains(vB)) {
+            Edge<E> edge = new Edge<>(vA, weight, vB);
+            list.add(edge);
+            numEdges++;
+        }
     }
 
-    private void addUndirected(final E vertexA, final E vertexB) {
+    private void addUndirected(final E vertexA, double weight, final E vertexB) {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
 
         IList<Edge<E>> listA = adjList.get(vA);
         IList<Edge<E>> listB = adjList.get(vB);
 
-//        if (!listA.contains(vertexB) && !listB.contains(vertexA)) {
-//            listA.add(vertexB);
-//            listB.add(vertexA);
-//            numEdges++;
-//        }
+        if (!listA.contains(vertexB) && !listB.contains(vertexA)) {
+            Edge<E> edgeA = new Edge<>(vA, weight, vB);
+            Edge<E> edgeB = new Edge<>(vB, weight, vA);
+
+            listA.add(edgeA);
+            listB.add(edgeB);
+            numEdges++;
+        }
 
     }
 
+    @Override
+    public IList<E> getNeighbors(final E vertex) {
+        IList<Edge<E>> l = adjList.get(new Vertex<>(vertex));
+        IList<E> ll = new LinkedList<>();
+        for(Edge<E> edge : l){
+            ll.add(edge.to.data);
+        }
+        return ll;
+    }
 
     enum TYPE {
         DIRECTED, UNDIRECTED
@@ -137,12 +149,12 @@ public class Graph<E> implements IGraph<E> {
         }
     }
 
-    public class Edge<T>{
-        Vertex<T> from;
-        Vertex<T> to;
+    public class Edge<E>{
+        Vertex<E> from;
+        Vertex<E> to;
         double weight;
 
-        public Edge(final Vertex<T> from, final Vertex<T> to, final double weight) {
+        public Edge(final Vertex<E> from, final double weight,  final Vertex<E> to) {
             this.from = from;
             this.to = to;
             this.weight = weight;

@@ -14,7 +14,7 @@ public interface IGraph<E> {
 
     void addVertex(E vertex);
 
-    void addEdge(E vertexA, E vertexB);
+    void addEdge(E vertexA, double edgeWeight, E vertexB);
 
     IList<E> getNeighbors(E vertex);
 

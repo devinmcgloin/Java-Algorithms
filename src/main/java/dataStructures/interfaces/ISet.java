@@ -9,6 +9,5 @@ import java.util.Iterator;
  */
 public interface ISet<E> extends Seq<E>{
 
-    boolean contains(E item);
 
 }

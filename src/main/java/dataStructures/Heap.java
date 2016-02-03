@@ -1,9 +1,11 @@
 package dataStructures;
 
 import dataStructures.interfaces.IHeap;
+import dataStructures.interfaces.Seq;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author devinmcgloin
@@ -45,6 +47,76 @@ public class Heap<E> implements IHeap<E>{
 
     private int getParent(int k) {
         return (k - 1) / 2;
+    }
+
+    @Override
+    public Heap<E> heapify(final Collection<E> c) {
+        return null;
+    }
+
+    @Override
+    public E poll() {
+        return null;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public E[] toArray(final E[] arr) {
+        return arr;
+    }
+
+    @Override
+    public boolean add(final E element) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(final Object element) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(final Object element) {
+        return false;
+    }
+
+    @Override
+    public void addAll(final Seq<? extends E> elements) {
+
+    }
+
+    @Override
+    public void removeAll(final Seq<? extends E> elements) {
+
+    }
+
+    @Override
+    public boolean containsAll(final Seq<? extends E> elements) {
+        return false;
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<E> iterator() {
+        return null;
     }
 
     public enum TYPE {

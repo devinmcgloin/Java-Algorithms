@@ -17,7 +17,7 @@ public class BFS {
 
     private BFS(){}
 
-    public static <E> IList<E> bfs(Graph<E> map, Graph.Vertex<E> start, Graph.Vertex<E> goal) {
+    public static <E> IList<E> bfs(Graph<E> map, E start, E goal) {
         // Edge case if start is equal to the goal.
         if(start.equals(goal)) {
             IList<E> list = new LinkedList<>();
@@ -26,21 +26,21 @@ public class BFS {
         }
 
         //Initialize data structures
-        HashSet<Vertex<E>> visited = new HashSet<>();
-        LinkedList<Vertex<E>> queue = new LinkedList<>();
-        HashMap<Vertex<E>, Graph.Vertex<E>> path = new HashMap<>();
+        HashSet<E> visited = new HashSet<>();
+        LinkedList<E> queue = new LinkedList<>();
+        HashMap<E, E> path = new HashMap<>();
 
         visited.add(start);
         queue.offer(start);
 
         while(!queue.isEmpty()){
-            Vertex<E> current = queue.poll();
+            E current = queue.poll();
 
             //if we've found the goal, we loop through the map from the goal to the start position
-            if(current.equals( goal)) {
-                LinkedList<Vertex<E>> finalPath = new LinkedList<>();
+            if(current.equals(goal)) {
+                LinkedList<E> finalPath = new LinkedList<>();
                 finalPath.add(goal);
-                Vertex<E> g = path.get(goal);
+                E g = path.get(goal);
                 while(!g.equals(start)){
                     finalPath.addFirst(g);
                     g = path.get(g);
@@ -50,7 +50,7 @@ public class BFS {
             }
 
             // else we look at more neighbors
-            for(Vertex<E> neigh : map.get(current)){
+            for(E neigh : map.getNeighbors(current)){
                 if(visited.contains(neigh))
                     continue;
                 visited.add(neigh);
