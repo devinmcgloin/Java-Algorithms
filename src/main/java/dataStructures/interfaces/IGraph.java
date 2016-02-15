@@ -27,4 +27,6 @@ public interface IGraph<E> {
 
     Set<E> getVerticies();
 
+    double weight(E vertexA, E vertexB);
+
 }

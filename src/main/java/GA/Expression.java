@@ -84,11 +84,16 @@ public class Expression implements GAInterface<Expression> {
 
     public static void main(String[] args){
         Expression e = new Expression("");
-        e.initializeTables();
+        initializeTables();
         GA<Expression> GA = new GA<Expression>(t);
-        target = 6.666666667;
+
         e = GA.solve();
-        System.out.printf("Solution Found: %s\nFitness: %f\nEvaluates: %f\nTarget: %d\n", e, e.fitness(), e.evaluate(), target);
+        if (e != null) {
+            System.out.printf("Solution Found: %s\n" +
+                    "Fitness: %f\n" +
+                    "Evaluates: %f\n" +
+                    "Target: %f\n", e, e.fitness(), e.evaluate(), target);
+        }
 
     }
 

@@ -53,6 +53,19 @@ public class Graph<E> implements IGraph<E> {
         }
     }
 
+    @Override
+    public double weight(final E vertexA, final E vertexB) {
+        Vertex<E> vA = new Vertex<>(vertexA);
+        Vertex<E> vB = new Vertex<>(vertexB);
+
+        for (Edge<E> edge : adjList.get(vA)) {
+            if (edge.from.equals(vA) && edge.to.equals(vB)) {
+                return edge.weight;
+            }
+        }
+        return Double.POSITIVE_INFINITY;
+    }
+
     /**
      * for undirected graphs this function removes both edges between vertexA and vertexB. For directed graphs, it only removes the edge from vertexA to vertexB.
      *
@@ -173,7 +186,7 @@ public class Graph<E> implements IGraph<E> {
         return ll;
     }
 
-    enum TYPE {
+    public enum TYPE {
         DIRECTED, UNDIRECTED
     }
 

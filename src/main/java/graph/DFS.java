@@ -65,17 +65,7 @@ public class DFS {
 
     public static void main(String[] args) {
         Graph<String> g = new Graph<>();
-        g.addEdge("a", 1, "b");
-        g.addEdge("a", 1, "h");
-        g.addEdge("b", 1, "h");
-        g.addEdge("b", 1, "f");
-        g.addEdge("c", 1, "d");
-        g.addEdge("d", 1, "i");
-        g.addEdge("d", 1, "g");
-        g.addEdge("e", 1, "f");
-        g.addEdge("e", 1, "g");
-        g.addEdge("f", 1, "i");
-        g.addEdge("a", 1, "d");
+        GraphLoader.loadGraph(g, "/Users/devinmcgloin/projects/Java-Algorithms/src/main/resources/simpleUnweightedGraph");
 
         System.out.println(dfs(g, "b", "c"));
     }
