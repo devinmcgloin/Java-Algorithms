@@ -4,7 +4,6 @@ import dataStructures.interfaces.IDeque;
 import dataStructures.interfaces.IList;
 import dataStructures.interfaces.Seq;
 
-import java.util.EmptyStackException;
 import java.util.Iterator;
 
 /**
@@ -60,6 +59,21 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     }
 
     @Override
+    public E peek() {
+        return null;
+    }
+
+    @Override
+    public E pop() {
+        return null;
+    }
+
+    @Override
+    public boolean push(final E element) {
+        return false;
+    }
+
+    @Override
     public E get(final int index) {
         return null;
     }
@@ -67,6 +81,21 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     @Override
     public E remove(final int index) {
         return null;
+    }
+
+    @Override
+    public int indexOf(final E element) {
+        return 0;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
     @Override
@@ -117,65 +146,6 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     @Override
     public Iterator<E> iterator() {
         return null;
-    }
-
-    public boolean isEmpty() {
-        return head == null;
-    }
-
-    public int size() {
-        return size;
-    }
-
-    public E pop() {
-        if (isEmpty())
-            throw new EmptyStackException();
-        E element = head.element;
-        head = head.next;
-        size--;
-        return element;
-    }
-
-    public E peek() {
-        if (isEmpty())
-            throw new EmptyStackException();
-        return head.element;
-    }
-
-    public E push(E element) {
-        if (head == null) {
-            head = new Node<>(element);
-            size++;
-            return element;
-        } else {
-            Node<E> newHead = new Node<>(element);
-            newHead.next = head;
-            head = newHead;
-            size++;
-            return element;
-        }
-    }
-
-    public int search(E element) {
-        if (isEmpty() || element == null)
-            return -1;
-        int pos = 1;
-        Node<E> current = head;
-        while (current != null) {
-            if (current.element.equals(element)) {
-                return pos;
-            }
-            pos++;
-            current = current.next;
-        }
-        return -1;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "size = " + size;
     }
 
     private class Node<E> {

@@ -25,4 +25,10 @@ public interface IDeque<E> extends Seq<E> {
     void addFirst(E element);
 
     void addLast(E element);
+
+    E peek();
+
+    E pop();
+
+    boolean push(E element);
 }

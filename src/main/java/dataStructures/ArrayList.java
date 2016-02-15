@@ -22,6 +22,11 @@ public class ArrayList<E> implements IList<E> {
     }
 
     @Override
+    public int indexOf(final E element) {
+        return 0;
+    }
+
+    @Override
     public int size() {
         return 0;
     }

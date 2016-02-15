@@ -3,8 +3,9 @@ package dataStructures;
 
 import dataStructures.interfaces.IGraph;
 
-import java.util.*;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.*;
 import java.util.LinkedList;
 
 /**
@@ -41,13 +42,62 @@ public class Graph<E> implements IGraph<E> {
 
     @Override
     public void removeVertex(final E vertex) {
+        Vertex<E> tmp = new Vertex<E>(vertex);
+        adjList.remove(tmp);
+        for (List<Edge<E>> list : adjList.values()) {
+            for (Iterator<Edge<E>> iter = list.iterator(); iter.hasNext(); ) {
+                Edge<E> edge = iter.next();
+                if (edge.from.equals(tmp) || edge.to.equals(tmp))
+                    iter.remove();
+            }
+        }
+    }
 
+    /**
+     * for undirected graphs this function removes both edges between vertexA and vertexB. For directed graphs, it only removes the edge from vertexA to vertexB.
+     *
+     * @param vertexA
+     * @param vertexB
+     */
+    @Override
+    public void removeEdge(final E vertexA, final E vertexB) {
+        Vertex<E> vA = new Vertex<>(vertexA);
+        Vertex<E> vB = new Vertex<>(vertexB);
+
+        for (Iterator<Edge<E>> iter = adjList.get(vA).iterator(); iter.hasNext(); ) {
+            Edge<E> edge = iter.next();
+            if (edge.from.equals(vA) && edge.to.equals(vB)) {
+                iter.remove();
+            }
+        }
+
+        if (t == TYPE.UNDIRECTED) {
+            for (Iterator<Edge<E>> iter = adjList.get(vB).iterator(); iter.hasNext(); ) {
+                Edge<E> edge = iter.next();
+                if (edge.from.equals(vB) && edge.to.equals(vA)) {
+                    iter.remove();
+                }
+            }
+        }
     }
 
     @Override
-    public void removeEdge(final E vertexA, final E vertexB) {
-
+    public boolean containsVertex(final E vertex) {
+        for (Vertex<E> v : adjList.keySet()) {
+            if (vertex.equals(v.data))
+                return true;
+        }
+        return false;
     }
+
+    @Override
+    public Set<E> getVerticies() {
+        Set<E> hashSet = new HashSet<>();
+        for (Vertex<E> v : adjList.keySet())
+            hashSet.add(v.data);
+        return hashSet;
+    }
+
 
     /**
      * @param vertex

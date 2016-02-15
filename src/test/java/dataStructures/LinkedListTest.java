@@ -38,14 +38,14 @@ public class LinkedListTest {
                         break;
                     case 2:
                         Integer searchItem = r.nextInt();
-                        assertThat(list.search(searchItem), is(javalist.indexOf(searchItem)));
+                        assertThat(list.indexOf(searchItem), is(javalist.indexOf(searchItem)));
                         break;
                     case 3:
                         assertThat(list.isEmpty(), is(javalist.isEmpty()));
                         break;
                     default:
                         searchItem = r.nextInt();
-                        assertThat(list.search(searchItem), is(javalist.indexOf(searchItem)));
+                        assertThat(list.indexOf(searchItem), is(javalist.indexOf(searchItem)));
                         break;
                 }
             } catch (EmptyStackException e) {

@@ -60,7 +60,7 @@ public class BFS {
 
         }
 
-        return null;
+        return new LinkedList<>();
     }
 
     public static void main(String[] args){

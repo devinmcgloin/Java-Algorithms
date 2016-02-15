@@ -1,6 +1,7 @@
 package dataStructures.interfaces;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author devinmcgloin
@@ -21,4 +22,9 @@ public interface IGraph<E> {
     void removeVertex(E vertex);
 
     void removeEdge(E vertexA, E vertexB);
+
+    boolean containsVertex(E vertex);
+
+    Set<E> getVerticies();
+
 }
