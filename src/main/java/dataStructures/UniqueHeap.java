@@ -54,8 +54,17 @@ public class UniqueHeap<E> implements IHeap<E> {
 
     @Override
     public boolean add(final E element) {
+        if (!set.contains(element)) {
+            set.add(element);
+            heap.add(element);
+            return true;
+        } else {
+            set.remove(element);
+
+        }
 
         return false;
+
     }
 
     @Override
