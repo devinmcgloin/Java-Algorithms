@@ -15,7 +15,7 @@ public class QuickSort {
     /**
      * avg = O (n log n) worst = O (n^2)
      * <p>
-     * todo select pivot
+     * todo select better pivot
      *
      * @param list
      * @param <T>

@@ -6,6 +6,7 @@ import dataStructures.interfaces.Seq;
 import java.util.Iterator;
 
 /**
+ * todo not implemented
  * @author devinmcgloin
  * @version 2/2/16.
  */

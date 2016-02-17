@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 /**
  * Tested and matched with java implementation implement common java spec
- * todo this needs to turn into a double linked list.
+ * todo this needs be implemented
  * @author devinmcgloin
  * @version 10/28/15.
  */

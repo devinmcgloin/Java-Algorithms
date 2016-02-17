@@ -7,6 +7,7 @@ import dataStructures.interfaces.Seq;
 import java.util.Iterator;
 
 /**
+ * todo need to implmenet
  * @author devinmcgloin
  * @version 2/2/16.
  */

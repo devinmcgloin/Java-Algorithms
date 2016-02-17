@@ -117,7 +117,6 @@ public class Graph<E> {
     }
 
     /**
-     * todo need to check if edge is already present.
      *
      * @param vertexA
      * @param vertexB
@@ -167,7 +166,6 @@ public class Graph<E> {
         }
 
     }
-
 
     public List<Vertex<E>> getNeighbors(final Vertex<E> vertex) {
         List<Edge<E>> l = adjList.get(vertex);

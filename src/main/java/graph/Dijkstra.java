@@ -44,7 +44,6 @@ public class Dijkstra {
 
         while (!priorityQueue.isEmpty()) {
             Tuple<Vertex<E>, Double> current = priorityQueue.poll();
-            logger.debug(current);
 
             if (!visited.contains(current)) {
                 visited.add(current);
