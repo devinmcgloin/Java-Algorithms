@@ -1,12 +1,10 @@
 package graph;
 
 
-import dataStructures.Graph;
+import dataStructures.graph.Graph;
+import dataStructures.graph.Vertex;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author devinmcgloin
@@ -16,30 +14,30 @@ public class BFS {
 
     private BFS(){}
 
-    public static <E> List<E> bfs(Graph<E> map, E start, E goal) {
+    public static <E> List<Vertex<E>> bfs(Graph<E> map, Vertex<E> start, Vertex<E> goal) {
         // Edge case if start is equal to the goal.
         if(start.equals(goal)) {
-            List<E> list = new LinkedList<>();
+            List<Vertex<E>> list = new LinkedList<>();
             list.add(goal);
             return list;
         }
 
         //Initialize data structures
-        HashSet<E> visited = new HashSet<>();
-        LinkedList<E> queue = new LinkedList<>();
-        HashMap<E, E> path = new HashMap<>();
+        HashSet<Vertex<E>> visited = new HashSet<>();
+        LinkedList<Vertex<E>> queue = new LinkedList<>();
+        HashMap<Vertex<E>, Vertex<E>> path = new HashMap<>();
 
         visited.add(start);
         queue.offer(start);
 
         while(!queue.isEmpty()){
-            E current = queue.poll();
+            Vertex<E> current = queue.poll();
 
             //if we've found the goal, we loop through the map from the goal to the start position
             if(current.equals(goal)) {
-                LinkedList<E> finalPath = new LinkedList<>();
+                LinkedList<Vertex<E>> finalPath = new LinkedList<>();
                 finalPath.add(goal);
-                E g = path.get(goal);
+                Vertex<E> g = path.get(goal);
                 while(!g.equals(start)){
                     finalPath.addFirst(g);
                     g = path.get(g);
@@ -49,7 +47,7 @@ public class BFS {
             }
 
             // else we look at more neighbors
-            for(E neigh : map.getNeighbors(current)){
+            for (Vertex<E> neigh : map.getNeighbors(current)) {
                 if(visited.contains(neigh))
                     continue;
                 visited.add(neigh);
@@ -67,6 +65,11 @@ public class BFS {
         Graph<String> g = new Graph<>();
         GraphLoader.loadGraph(g, "/Users/devinmcgloin/projects/Java-Algorithms/src/main/resources/simpleUnweightedGraph");
 
-        System.out.println(bfs(g, "b", "c"));
+
+        Optional<Vertex<String>> start = g.getVertex("b");
+        Optional<Vertex<String>> end = g.getVertex("c");
+
+        if (start.isPresent() && end.isPresent())
+            System.out.println(bfs(g, start.get(), end.get()));
     }
 }

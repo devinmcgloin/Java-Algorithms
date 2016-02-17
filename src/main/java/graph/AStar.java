@@ -1,6 +1,6 @@
 package graph;
 
-import dataStructures.Graph;
+import dataStructures.graph.Graph;
 import org.apache.log4j.Logger;
 
 import java.util.List;

@@ -1,18 +1,13 @@
-package dataStructures;
+package dataStructures.graph;
 
 
-import dataStructures.interfaces.IGraph;
-
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.*;
-import java.util.LinkedList;
 
 /**
  * @author devinmcgloin
  * @version 1/19/16.
  */
-public class Graph<E> implements IGraph<E> {
+public class Graph<E> {
 
     Map<Vertex<E>, List<Edge<E>>> adjList = new HashMap<>();
     private int numVerts;
@@ -30,36 +25,32 @@ public class Graph<E> implements IGraph<E> {
         this.t = t;
     }
 
-    @Override
+
     public int getNumVertices() {
         return numVerts;
     }
 
-    @Override
+
     public int getNumEdges() {
         return numEdges;
     }
 
-    @Override
-    public void removeVertex(final E vertex) {
-        Vertex<E> tmp = new Vertex<E>(vertex);
-        adjList.remove(tmp);
+
+    public void removeVertex(final Vertex<E> vertex) {
+        adjList.remove(vertex);
         for (List<Edge<E>> list : adjList.values()) {
             for (Iterator<Edge<E>> iter = list.iterator(); iter.hasNext(); ) {
                 Edge<E> edge = iter.next();
-                if (edge.from.equals(tmp) || edge.to.equals(tmp))
+                if (edge.from.equals(vertex) || edge.to.equals(vertex))
                     iter.remove();
             }
         }
     }
 
-    @Override
-    public double weight(final E vertexA, final E vertexB) {
-        Vertex<E> vA = new Vertex<>(vertexA);
-        Vertex<E> vB = new Vertex<>(vertexB);
 
-        for (Edge<E> edge : adjList.get(vA)) {
-            if (edge.from.equals(vA) && edge.to.equals(vB)) {
+    public double getWeight(final Vertex<E> vertexA, final Vertex<E> vertexB) {
+        for (Edge<E> edge : adjList.get(vertexA)) {
+            if (edge.from.equals(vertexA) && edge.to.equals(vertexB)) {
                 return edge.weight;
             }
         }
@@ -72,42 +63,39 @@ public class Graph<E> implements IGraph<E> {
      * @param vertexA
      * @param vertexB
      */
-    @Override
-    public void removeEdge(final E vertexA, final E vertexB) {
-        Vertex<E> vA = new Vertex<>(vertexA);
-        Vertex<E> vB = new Vertex<>(vertexB);
 
-        for (Iterator<Edge<E>> iter = adjList.get(vA).iterator(); iter.hasNext(); ) {
+    public void removeEdge(final Vertex<E> vertexA, final Vertex<E> vertexB) {
+        for (Iterator<Edge<E>> iter = adjList.get(vertexA).iterator(); iter.hasNext(); ) {
             Edge<E> edge = iter.next();
-            if (edge.from.equals(vA) && edge.to.equals(vB)) {
+            if (edge.from.equals(vertexA) && edge.to.equals(vertexB)) {
                 iter.remove();
             }
         }
 
         if (t == TYPE.UNDIRECTED) {
-            for (Iterator<Edge<E>> iter = adjList.get(vB).iterator(); iter.hasNext(); ) {
+            for (Iterator<Edge<E>> iter = adjList.get(vertexB).iterator(); iter.hasNext(); ) {
                 Edge<E> edge = iter.next();
-                if (edge.from.equals(vB) && edge.to.equals(vA)) {
+                if (edge.from.equals(vertexB) && edge.to.equals(vertexA)) {
                     iter.remove();
                 }
             }
         }
     }
 
-    @Override
-    public boolean containsVertex(final E vertex) {
+
+    public boolean containsVertex(final Vertex<E> vertex) {
         for (Vertex<E> v : adjList.keySet()) {
-            if (vertex.equals(v.data))
+            if (vertex.equals(v))
                 return true;
         }
         return false;
     }
 
-    @Override
-    public Set<E> getVerticies() {
-        Set<E> hashSet = new HashSet<>();
+
+    public Set<Vertex<E>> getVerticies() {
+        Set<Vertex<E>> hashSet = new HashSet<>();
         for (Vertex<E> v : adjList.keySet())
-            hashSet.add(v.data);
+            hashSet.add(v);
         return hashSet;
     }
 
@@ -115,7 +103,7 @@ public class Graph<E> implements IGraph<E> {
     /**
      * @param vertex
      */
-    @Override
+
     public void addVertex(final E vertex) {
         Vertex<E> v = new Vertex<>(vertex);
         if (!adjList.containsKey(v)) {
@@ -124,13 +112,17 @@ public class Graph<E> implements IGraph<E> {
         }
     }
 
+    public Optional<Vertex<E>> getVertex(E item) {
+        return adjList.keySet().stream().filter(vertex -> vertex.data.equals(item)).findFirst();
+    }
+
     /**
      * todo need to check if edge is already present.
      *
      * @param vertexA
      * @param vertexB
      */
-    @Override
+
     public void addEdge(final E vertexA, final double edgeWeight, final E vertexB) {
         Vertex<E> vA = new Vertex<>(vertexA);
         Vertex<E> vB = new Vertex<>(vertexB);
@@ -176,12 +168,12 @@ public class Graph<E> implements IGraph<E> {
 
     }
 
-    @Override
-    public List<E> getNeighbors(final E vertex) {
-        List<Edge<E>> l = adjList.get(new Vertex<>(vertex));
-        List<E> ll = new LinkedList<>();
+
+    public List<Vertex<E>> getNeighbors(final Vertex<E> vertex) {
+        List<Edge<E>> l = adjList.get(vertex);
+        List<Vertex<E>> ll = new LinkedList<>();
         for(Edge<E> edge : l){
-            ll.add(edge.to.data);
+            ll.add(edge.to);
         }
         return ll;
     }
@@ -190,39 +182,7 @@ public class Graph<E> implements IGraph<E> {
         DIRECTED, UNDIRECTED
     }
 
-    public class Vertex<T>{
-        T data;
 
-        public Vertex(final T data) {
-            this.data = data;
-        }
-
-        @Override
-        public boolean equals(final Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            final Vertex<?> vertex = (Vertex<?>) o;
-
-            return data != null ? data.equals(vertex.data) : vertex.data == null;
-
-        }
-
-        @Override
-        public int hashCode() {
-            return data != null ? data.hashCode() : 0;
-        }
-    }
-
-    public class Edge<E>{
-        Vertex<E> from;
-        Vertex<E> to;
-        double weight;
-
-        public Edge(final Vertex<E> from, final double weight,  final Vertex<E> to) {
-            this.from = from;
-            this.to = to;
-            this.weight = weight;
-        }
-    }
 }
+
+
