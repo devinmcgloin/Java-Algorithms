@@ -3,6 +3,8 @@ package dataStructures;
 import dataStructures.interfaces.IList;
 import dataStructures.interfaces.IMap;
 
+import java.util.Optional;
+
 /**
  * todo not implemeneted
  * @author devinmcgloin
@@ -15,7 +17,7 @@ public class HashMap<K,V> implements IMap<K,V> {
     }
 
     @Override
-    public V get(final K key) {
+    public Optional<V> get(final K key) {
         return null;
     }
 

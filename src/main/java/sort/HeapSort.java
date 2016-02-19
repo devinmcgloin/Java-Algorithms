@@ -4,7 +4,7 @@ import dataStructures.Heap;
 import dataStructures.interfaces.IHeap;
 
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.Optional;
 
 /**
  * @author devinmcgloin
@@ -19,7 +19,8 @@ public class HeapSort {
         heap.heapify(c);
         c.clear();
         while(!heap.isEmpty()){
-            c.add(heap.poll());
+            Optional<E> item = heap.poll();
+            c.add(item.get());
         }
     }
 }

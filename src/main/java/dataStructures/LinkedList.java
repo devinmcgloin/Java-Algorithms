@@ -5,6 +5,7 @@ import dataStructures.interfaces.IList;
 import dataStructures.interfaces.Seq;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Tested and matched with java implementation implement common java spec
@@ -18,16 +19,6 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     int size = 0;
 
     /**
-     * remove first.
-     *
-     * @return
-     */
-    @Override
-    public E poll() {
-        return null;
-    }
-
-    /**
      * add to end.
      *
      * @param item
@@ -39,12 +30,12 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     }
 
     @Override
-    public E first() {
+    public Optional<E> first() {
         return null;
     }
 
     @Override
-    public E last() {
+    public Optional<E> last() {
         return null;
     }
 
@@ -59,12 +50,12 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     }
 
     @Override
-    public E peek() {
+    public Optional<E> peek() {
         return null;
     }
 
     @Override
-    public E pop() {
+    public Optional<E> pop() {
         return null;
     }
 
@@ -74,12 +65,12 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
     }
 
     @Override
-    public E get(final int index) {
+    public Optional<E> get(final int index) {
         return null;
     }
 
     @Override
-    public E remove(final int index) {
+    public Optional<E> remove(final int index) {
         return null;
     }
 

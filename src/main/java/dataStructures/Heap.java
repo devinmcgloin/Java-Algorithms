@@ -6,6 +6,7 @@ import dataStructures.interfaces.Seq;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * todo started, but not completed.
@@ -56,7 +57,7 @@ public class Heap<E> implements IHeap<E>{
     }
 
     @Override
-    public E poll() {
+    public Optional<E> poll() {
         return null;
     }
 

@@ -1,15 +1,12 @@
 package dataStructures.interfaces;
 
+import java.util.Optional;
+
 /**
  * @author devinmcgloin
  * @version 2/2/16.
  */
 public interface IDeque<E> extends Seq<E> {
-    /**
-     * remove first.
-     * @return
-     */
-    E poll();
 
     /**
      * add to end.
@@ -18,17 +15,17 @@ public interface IDeque<E> extends Seq<E> {
      */
     boolean offer(E item);
 
-    E first();
+    Optional<E> first();
 
-    E last();
+    Optional<E> last();
 
     void addFirst(E element);
 
     void addLast(E element);
 
-    E peek();
+    Optional<E> peek();
 
-    E pop();
+    Optional<E> pop();
 
     boolean push(E element);
 }

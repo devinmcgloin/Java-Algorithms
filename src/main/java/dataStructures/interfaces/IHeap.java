@@ -3,6 +3,7 @@ package dataStructures.interfaces;
 import dataStructures.Heap;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * @author devinmcgloin
@@ -12,5 +13,5 @@ public interface IHeap<E> extends Seq<E>{
 
     Heap<E> heapify(Collection<E> c);
 
-    E poll();
+    Optional<E> poll();
 }

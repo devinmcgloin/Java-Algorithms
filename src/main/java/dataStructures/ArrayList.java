@@ -5,6 +5,7 @@ import dataStructures.interfaces.IList;
 import dataStructures.interfaces.Seq;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * todo need to implmenet
@@ -13,12 +14,12 @@ import java.util.Iterator;
  */
 public class ArrayList<E> implements IList<E> {
     @Override
-    public E get(final int index) {
+    public Optional<E> get(final int index) {
         return null;
     }
 
     @Override
-    public E remove(final int index) {
+    public Optional<E> remove(final int index) {
         return null;
     }
 

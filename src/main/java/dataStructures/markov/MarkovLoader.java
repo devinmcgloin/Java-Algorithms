@@ -1,6 +1,5 @@
-package graph;
+package dataStructures.markov;
 
-import dataStructures.graph.Graph;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -8,23 +7,19 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * todo would like to add other formats for unweighted graphs, or where you can define multiple edges on one line.
  * @author devinmcgloin
- * @version 2/15/16.
+ * @version 2/19/16.
  */
-public class GraphLoader {
-    static Logger logger = Logger.getLogger(Dijkstra.class);
+public class MarkovLoader {
+
+    static Logger logger = Logger.getLogger(MarkovLoader.class);
 
 
     /**
-     * loads a graph in which each line is a value of the graph type, a double then another value.
-     * This indicates a link from a to c with a weight of b.
-     * a b c
-     *
-     * @param g
+     * @param m
      * @param path
      */
-    public static void loadGraph(Graph<String> g, String path) {
+    public static void loadMarkov(MarkovChain<String> m, String path) {
         File f = new File(path);
         Scanner scanner;
         try {
@@ -38,7 +33,7 @@ public class GraphLoader {
             if (line.isEmpty())
                 continue;
             String[] items = line.split(" ");
-            g.addEdge(items[0], Double.valueOf(items[1]), items[2]);
+            m.addState(items[0], Double.valueOf(items[1]), items[2]);
         }
     }
 }

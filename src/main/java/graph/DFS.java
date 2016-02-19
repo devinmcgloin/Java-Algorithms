@@ -1,6 +1,7 @@
 package graph;
 
 import dataStructures.graph.Graph;
+import dataStructures.graph.GraphLoader;
 import dataStructures.graph.Vertex;
 
 import java.util.*;
