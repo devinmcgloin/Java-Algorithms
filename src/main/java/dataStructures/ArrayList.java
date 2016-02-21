@@ -1,7 +1,6 @@
 package dataStructures;
 
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import dataStructures.interfaces.IList;
 import dataStructures.interfaces.Seq;
 
@@ -15,8 +14,8 @@ import java.util.Optional;
  */
 public class ArrayList<E> implements IList<E> {
     private static int DEFAULT_CAPACITY = 12;
-    private Object[] elementData;
     int size;
+    private Object[] elementData;
 
     public ArrayList() {
         elementData = new Object[DEFAULT_CAPACITY];
