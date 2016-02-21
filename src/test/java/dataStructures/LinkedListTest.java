@@ -18,48 +18,7 @@ public class LinkedListTest {
 
     @Test
     public void test() throws Exception {
-        java.util.LinkedList<Integer> javalist = new java.util.LinkedList<Integer>();
-        LinkedList<Integer> list = new LinkedList<>();
-        for (int i = 0; i < iterations; i++) {
-            Integer item = r.nextInt();
-            list.push(item);
-            javalist.push(item);
-        }
 
-        for (int i = 0; i < iterations; i++) {
-            int choice = r.nextInt(4);
-            try {
-                switch (choice) {
-                    case 0:
-                        assertThat(list.peek(), is(javalist.peek()));
-                        break;
-                    case 1:
-                        assertThat(list.pop(), is(javalist.pop()));
-                        break;
-                    case 2:
-                        Integer searchItem = r.nextInt();
-                        assertThat(list.indexOf(searchItem), is(javalist.indexOf(searchItem)));
-                        break;
-                    case 3:
-                        assertThat(list.isEmpty(), is(javalist.isEmpty()));
-                        break;
-                    default:
-                        searchItem = r.nextInt();
-                        assertThat(list.indexOf(searchItem), is(javalist.indexOf(searchItem)));
-                        break;
-                }
-            } catch (EmptyStackException e) {
-                continue;
-            }
-        }
-
-        while (!list.isEmpty() && !javalist.isEmpty()) {
-            assertThat(list.pop(), is(javalist.pop()));
-        }
-
-        assertThat(list.size(), is(javalist.size()));
-        assertThat(list.size(), is(0));
-        assertThat(javalist.size(), is(0));
     }
 
 
