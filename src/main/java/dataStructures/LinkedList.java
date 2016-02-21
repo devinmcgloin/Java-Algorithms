@@ -1,88 +1,152 @@
 package dataStructures;
 
-import java.util.EmptyStackException;
+import dataStructures.interfaces.IDeque;
+import dataStructures.interfaces.IList;
+import dataStructures.interfaces.Seq;
+
+import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Tested and matched with java implementation implement common java spec
- *
+ * todo this needs be implemented
  * @author devinmcgloin
  * @version 10/28/15.
  */
-public class LinkedList<E> {
+public class LinkedList<E> implements IList<E>,IDeque<E> {
     Node<E> head = null;
+    Node<E> tail = null;
     int size = 0;
 
-    public boolean isEmpty() {
-        return head == null;
-    }
-
-    public int size() {
-        return size;
-    }
-
-    public E pop() {
-        if (isEmpty())
-            throw new EmptyStackException();
-        E element = head.element;
-        head = head.next;
-        size--;
-        return element;
-    }
-
-    public E peek() {
-        if (isEmpty())
-            throw new EmptyStackException();
-        return head.element;
-    }
-
-    public E push(E element) {
-        if (head == null) {
-            head = new Node<>(element);
-            size++;
-            return element;
-        } else {
-            Node<E> newHead = new Node<>(element);
-            newHead.next = head;
-            head = newHead;
-            size++;
-            return element;
+    /**
+     * add to end.
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean offer(final E item) {
+        if(head == null && tail == null){
+            head = new Node<>(item);
+            head.next = tail;
         }
+        return false;
     }
-
-    public int search(E element) {
-        if (isEmpty() || element == null)
-            return -1;
-        int pos = 1;
-        Node<E> current = head;
-        while (current != null) {
-            if (current.element.equals(element)) {
-                return pos;
-            }
-            pos++;
-            current = current.next;
-        }
-        return -1;
-    }
-
-    private int search(Node<E> node, E element) {
-        if (node == null || size == 0)
-            return -1;
-        else if (node.element.equals(element)) {
-            return 0;
-        } else {
-            return 1 + search(node.next, element);
-        }
-    }
-
 
     @Override
-    public String toString() {
-        return "size = " + size;
+    public Optional<E> first() {
+        return null;
+    }
+
+    @Override
+    public Optional<E> last() {
+        return null;
+    }
+
+    @Override
+    public void addFirst(final E element) {
+
+    }
+
+    @Override
+    public void addLast(final E element) {
+
+    }
+
+    @Override
+    public Optional<E> peek() {
+        return null;
+    }
+
+    @Override
+    public Optional<E> pop() {
+        return null;
+    }
+
+    @Override
+    public boolean push(final E element) {
+        return false;
+    }
+
+    @Override
+    public Optional<E> get(final int index) {
+        return null;
+    }
+
+    @Override
+    public Optional<E> remove(final int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(final E element) {
+        return 0;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public E[] toArray(final E[] arr) {
+        return arr;
+    }
+
+    @Override
+    public boolean add(final E element) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(final Object element) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(final Object element) {
+        return false;
+    }
+
+    @Override
+    public void addAll(final Seq<? extends E> elements) {
+
+    }
+
+    @Override
+    public void removeAll(final Seq<? extends E> elements) {
+
+    }
+
+    @Override
+    public boolean containsAll(final Seq<? extends E> elements) {
+        return false;
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<E> iterator() {
+        return null;
     }
 
     private class Node<E> {
         E element = null;
         Node<E> next = null;
+        Node<E> prev = null;
 
         Node(E value) {
             this.element = value;

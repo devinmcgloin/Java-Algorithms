@@ -42,5 +42,9 @@ abstract class Translator<E> {
 
     abstract E decode(String s);
 
+    abstract String encode(E item);
+
+    abstract ArrayList<String> genRandOffspring();
+
 
 }

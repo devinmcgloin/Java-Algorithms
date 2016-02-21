@@ -3,7 +3,7 @@ package dataStructures;
 import java.util.Comparator;
 
 /**
- *
+ * todo started, but not completed.
  * @author devinmcgloin
  * @version 11/24/15.
  */

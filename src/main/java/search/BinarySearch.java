@@ -12,9 +12,9 @@ public class BinarySearch {
 
     }
 
-    public static <T extends Comparable<T>> int recSearch(ArrayList<T> list, T searchTerm) {
+    public static <T extends Comparable<T>> int recSearch(ArrayList<T> sortedList, T searchTerm) {
         int low = 0;
-        int high = list.size() - 1;
+        int high = sortedList.size() - 1;
         int middle;
 
         if (high < low) {
@@ -22,39 +22,39 @@ public class BinarySearch {
         }
 
         middle = (low + high) >> 1; //bit shift divide by two.
-        T temp = list.get(middle);
+        T temp = sortedList.get(middle);
         int comp = temp.compareTo(searchTerm);
 
         if (comp < 0) {
-            return recSearch(list, searchTerm, middle + 1, high);
+            return recSearch(sortedList, searchTerm, middle + 1, high);
         } else if (comp > 0) {
-            return recSearch(list, searchTerm, low, middle - 1);
+            return recSearch(sortedList, searchTerm, low, middle - 1);
         } else return middle;
     }
 
-    private static <T extends Comparable<T>> int recSearch(ArrayList<T> list, T searchTerm, int low, int high) {
+    private static <T extends Comparable<T>> int recSearch(ArrayList<T> sortedList, T searchTerm, int low, int high) {
         int middle = (low + high) >> 1; //bit shift divide by two.
-        T temp = list.get(middle);
+        T temp = sortedList.get(middle);
         int comp = temp.compareTo(searchTerm);
 
         if (high < low) {
             return -(low + 1);
         }
         if (comp < 0) {
-            return recSearch(list, searchTerm, middle + 1, high);
+            return recSearch(sortedList, searchTerm, middle + 1, high);
         } else if (comp > 0) {
-            return recSearch(list, searchTerm, low, middle - 1);
+            return recSearch(sortedList, searchTerm, low, middle - 1);
         } else return middle;
     }
 
-    public static <T extends Comparable<T>> int search(ArrayList<T> list, T searchTerm) {
+    public static <T extends Comparable<T>> int search(ArrayList<T> sortedList, T searchTerm) {
         int low = 0;
-        int high = list.size() - 1;
+        int high = sortedList.size() - 1;
         int middle;
 
         while (high >= low) {
             middle = (low + high) >> 1; //bit shift divide by two.
-            T mid = list.get(middle);
+            T mid = sortedList.get(middle);
             int comp = mid.compareTo(searchTerm);
             if (comp < 0) {
                 low = middle + 1;
