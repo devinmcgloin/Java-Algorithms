@@ -26,6 +26,10 @@ public class LinkedList<E> implements IList<E>,IDeque<E> {
      */
     @Override
     public boolean offer(final E item) {
+        if(head == null && tail == null){
+            head = new Node<>(item);
+            head.next = tail;
+        }
         return false;
     }
 

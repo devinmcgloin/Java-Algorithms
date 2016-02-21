@@ -1,5 +1,6 @@
 package dataStructures.interfaces;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -12,9 +13,9 @@ public interface IMap <K,V> {
 
     Optional<V> get(K key);
 
-    IList<K> getKeys();
+    List<K> getKeys();
 
-    IList<V> getValues();
+    List<V> getValues();
 
     void clear();
 

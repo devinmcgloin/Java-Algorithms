@@ -1,6 +1,7 @@
 package dataStructures;
 
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import dataStructures.interfaces.IList;
 import dataStructures.interfaces.Seq;
 
@@ -13,9 +14,18 @@ import java.util.Optional;
  * @version 2/2/16.
  */
 public class ArrayList<E> implements IList<E> {
+    private static int DEFAULT_CAPACITY = 12;
+    private Object[] elementData;
+    int size;
+
+    public ArrayList() {
+        elementData = new Object[DEFAULT_CAPACITY];
+        size = 0;
+    }
+
     @Override
     public Optional<E> get(final int index) {
-        return null;
+        return Optional.of((E) elementData[index]);
     }
 
     @Override
@@ -25,32 +35,44 @@ public class ArrayList<E> implements IList<E> {
 
     @Override
     public int indexOf(final E element) {
-        return 0;
+        for(int i = 0; i < size; i++){
+            E ith = (E) elementData[i];
+            if(ith.equals(element))
+                return i;
+        }
+        return -1;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return elementData.clone();
     }
 
     @Override
-    public E[] toArray(final E[] arr) {
+    public E[] toArray(E[] arr) {
+        if(arr.length >= size){
+            System.arraycopy(elementData, 0, arr, 0, size);
+        }
+        arr = null;
         return arr;
     }
 
     @Override
     public boolean add(final E element) {
-        return false;
+        ensureCapacity(size << 2);
+        elementData[size + 1] = element;
+        size++;
+        return true;
     }
 
     @Override
@@ -60,6 +82,11 @@ public class ArrayList<E> implements IList<E> {
 
     @Override
     public boolean contains(final Object element) {
+        for(int i = 0; i < size; i++){
+            if(elementData[i].equals(element)){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -87,4 +114,8 @@ public class ArrayList<E> implements IList<E> {
     public Iterator<E> iterator() {
         return null;
     }
+
+    private void ensureCapacity(int capacity){}
+
+    private void grow(int capacity){}
 }

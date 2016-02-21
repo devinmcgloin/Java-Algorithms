@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * todo not started
  * markov states handle the probabilities for each individual state, you can specify in terms of raw counts or percentage points.
  * todo what to do if percentage points dont add to one.
  *
